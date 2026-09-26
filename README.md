@@ -6,7 +6,7 @@ This folder is your algorithm practice, separate from the frontend interview not
 
 The phone page is [https://rahul-narayanasamy.github.io/dsa-practice/](https://rahul-narayanasamy.github.io/dsa-practice/).
 
-Open it once a day. It shows the next session and the instructions for that session. Tap **I finished** when the code is done. One finished session completes the week. The tick is saved in that browser, so use one device for the check. Add the page to your home screen if you want it one tap away.
+Open it once a day. It shows the next session, the pattern it belongs to, and where that problem gets hard. Tap **I finished** when the code is done. **Path** is the same plan grouped into ten chapters, step by step, with Easy, Medium, Hard, Review, Checkpoint, and Stretch marked on every row. One finished session completes the week. The tick is saved in that browser, so use one device for the check. Add the page to your home screen if you want it one tap away.
 
 Copy or restore at the bottom of the page moves the ticks to another browser. The boxes in `PROGRESS.md` stay on your computer. A box you check in that file also counts as done on the site after the next publish.
 

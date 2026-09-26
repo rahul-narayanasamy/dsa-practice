@@ -28,7 +28,7 @@
       color: var(--ink);
       font: 18px/1.5 Georgia, "Iowan Old Style", Palatino, serif;
     }
-    header, main, footer { width: min(40rem, calc(100% - 2rem)); margin: 0 auto; }
+    header, main, footer { width: min(46rem, calc(100% - 1.5rem)); margin: 0 auto; }
     header { padding: 1.25rem 0 0.5rem; }
     .kicker {
       margin: 0;
@@ -103,17 +103,139 @@
     }
     .markdown code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
     .markdown details { margin: 0.8rem 0; }
-    .list { list-style: none; padding: 0; margin: 0.6rem 0 1.4rem; }
-    .list li {
-      display: flex;
-      justify-content: space-between;
-      gap: 0.8rem;
-      padding: 0.65rem 0;
-      border-bottom: 1px solid var(--line);
-      font-size: 1rem;
+    .meter {
+      height: 8px;
+      margin: 0.85rem 0 0.2rem;
+      background: #e6dfd2;
+      border-radius: 999px;
+      overflow: hidden;
     }
-    .list .id { font: 0.85rem/1.4 ui-sans-serif, system-ui, sans-serif; color: var(--muted); }
-    .list .now { color: var(--green-2); font-weight: 700; }
+    .meter span {
+      display: block;
+      height: 100%;
+      background: var(--green);
+      border-radius: inherit;
+    }
+    .meta-row, .chip-row, .chapter-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      align-items: center;
+    }
+    .chapter-row, .chip-row { margin: 0.3rem 0 0.8rem; }
+    .chapter-row { padding-bottom: 0.2rem; }
+    .pill, .chip, .where {
+      font: 700 0.72rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .pill, .chip {
+      border-radius: 999px;
+      padding: 0.28rem 0.55rem;
+      border: 1px solid transparent;
+    }
+    .pill.easy, .chip.on.easy { background: #e5f6eb; color: #14532d; }
+    .pill.medium { background: #fff1d6; color: #7a4b00; }
+    .pill.hard, .pill.stretch { background: #ffe4de; color: #8f1d1d; }
+    .pill.review { background: #e5f0fa; color: #1a3e66; }
+    .pill.checkpoint { background: #ece7ff; color: #3a2d7a; }
+    .pill.warmup { background: #efe8dc; color: #3f3a33; }
+    .where { color: var(--muted); text-transform: none; letter-spacing: 0; font-weight: 600; }
+    .watch {
+      margin: 0.85rem 0 0.4rem;
+      padding: 0.75rem 0.85rem;
+      border-radius: 12px;
+      border-left: 4px solid var(--green);
+      background: #f7f3ea;
+    }
+    .watch strong {
+      display: block;
+      margin-bottom: 0.2rem;
+      font: 700 0.72rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    .watch.easy { background: #eef8f1; border-color: #1f7a3a; }
+    .watch.medium { background: #fff6e8; border-color: #c47b00; }
+    .watch.hard, .watch.stretch { background: #fff1ee; border-color: #b42318; }
+    .watch.review { background: #eef4fb; border-color: #1d4e89; }
+    .watch.checkpoint { background: #f4f1ff; border-color: #4c3f91; }
+    .watch.warmup { background: #f6f1e8; border-color: #6b645b; }
+    .textlink {
+      margin: 0.2rem 0 0.8rem;
+      padding: 0;
+      border: 0;
+      background: none;
+      color: var(--green-2);
+      font: 600 0.95rem/1.3 ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+      text-decoration: underline;
+    }
+    .blurb { margin: 0.2rem 0 0.7rem; color: var(--muted); }
+    .chapter-row button, .chip {
+      cursor: pointer;
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .chapter-row button {
+      border-radius: 999px;
+      padding: 0.4rem 0.7rem;
+      font: 600 0.82rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      white-space: nowrap;
+    }
+    .chapter-row button[aria-current="true"], .chip[aria-current="true"] {
+      background: var(--green);
+      border-color: var(--green);
+      color: #f4f0e6;
+    }
+    .steps { display: flex; flex-direction: column; gap: 0.55rem; margin: 0 0 1.2rem; }
+    .step {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 0.35rem 0.7rem;
+      width: 100%;
+      text-align: left;
+      padding: 0.75rem 0.8rem;
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      background: var(--card);
+      color: inherit;
+      font: inherit;
+      cursor: pointer;
+    }
+    .step.now { box-shadow: inset 3px 0 0 var(--green); }
+    .step.done { opacity: 0.72; }
+    .step .n {
+      width: 1.8rem;
+      height: 1.8rem;
+      border-radius: 999px;
+      display: grid;
+      place-items: center;
+      background: #efe8dc;
+      font: 700 0.78rem/1 ui-sans-serif, system-ui, sans-serif;
+    }
+    .step.now .n { background: var(--green); color: #f4f0e6; }
+    .step .who {
+      display: block;
+      color: var(--green-2);
+      font: 700 0.75rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+    .step strong { display: block; font-size: 1.02rem; }
+    .step .titleline { display: flex; flex-wrap: wrap; gap: 0.35rem 0.5rem; align-items: center; }
+    .step .bite {
+      grid-column: 2;
+      margin: 0;
+      color: var(--muted);
+      font-size: 0.92rem;
+    }
+    .countline {
+      margin: 0 0 0.6rem;
+      font: 0.85rem/1.3 ui-sans-serif, system-ui, sans-serif;
+      color: var(--muted);
+    }
     footer {
       padding: 0.2rem 0 2.5rem;
       color: var(--muted);
@@ -135,9 +257,10 @@
     <p class="kicker">DSA practice</p>
     <h1 id="title">Loading the next session</h1>
     <p class="status" id="status"></p>
+    <div class="meter" id="meter" hidden><span id="meter-bar"></span></div>
     <nav aria-label="Sections">
       <button type="button" data-view="today">Today</button>
-      <button type="button" data-view="list">Sessions</button>
+      <button type="button" data-view="path">Path</button>
       <button type="button" data-view="plan">Full plan</button>
       <button type="button" data-view="method">How to solve</button>
     </nav>
@@ -159,6 +282,7 @@
   <script>
     const DONE_KEY = "dsa-practice-done-v1";
     const CACHE_KEY = "dsa-practice-cache-v1";
+    const VIEWS = ["today", "path", "plan", "method"];
     const state = {
       view: location.hash.replace("#", "") || "today",
       sessions: [],
@@ -166,7 +290,11 @@
       method: "",
       done: loadDone(),
       error: "",
+      chapterId: null,
+      filter: "all",
+      reading: null,
     };
+    if (state.view === "list") state.view = "path";
 
     function loadDone() {
       try {
@@ -206,6 +334,44 @@
         .replace(/>/g, "&gt;");
     }
 
+    function biteLabel(difficulty) {
+      if (difficulty === "warmup") return "What you are learning";
+      if (difficulty === "review") return "Why this repeat";
+      if (difficulty === "checkpoint") return "What this proves";
+      if (difficulty === "stretch") return "Why this is a stretch";
+      if (difficulty === "hard" || difficulty === "medium") return "Where it gets hard";
+      return "Watch for";
+    }
+
+    function pill(difficulty) {
+      return "<span class='pill " + difficulty + "'>" + escapeHtml(DSA.difficultyLabel(difficulty)) + "</span>";
+    }
+
+    function watchBox(step) {
+      if (!step) return "";
+      return "<p class='watch " + step.difficulty + "'><strong>" + escapeHtml(biteLabel(step.difficulty)) + "</strong>" + escapeHtml(step.bite) + "</p>";
+    }
+
+    function sessionById(id) {
+      for (let i = 0; i < state.sessions.length; i++) {
+        if (state.sessions[i].id === id) return state.sessions[i];
+      }
+      return null;
+    }
+
+    function updateMeter() {
+      const meter = document.getElementById("meter");
+      const bar = document.getElementById("meter-bar");
+      const total = state.sessions.length;
+      if (!total) {
+        meter.hidden = true;
+        return;
+      }
+      const finished = DSA.finishedCount(state.sessions, state.done);
+      meter.hidden = false;
+      bar.style.width = Math.round((100 * finished) / total) + "%";
+    }
+
     function weekSentence() {
       const today = DSA.localDate(new Date());
       const count = DSA.weekCount(state.sessions, state.done, today);
@@ -235,6 +401,7 @@
         return;
       }
       status.textContent = weekSentence();
+      updateMeter();
       if (state.view === "plan") {
         title.textContent = "Full plan";
         main.innerHTML = '<article class="markdown">' + renderMarkdown(state.plan) + "</article>";
@@ -245,49 +412,98 @@
         main.innerHTML = '<article class="markdown">' + renderMarkdown(state.method) + "</article>";
         return;
       }
-      if (state.view === "list") {
-        title.textContent = "All sessions";
-        const next = DSA.nextSession(state.sessions, state.done);
-        const items = state.sessions.map(function (session) {
-          const done = DSA.isDone(session, state.done);
-          const mark = done ? state.done[session.id] || "in the notes" : next && next.id === session.id ? "next" : "";
-          return "<li><span><span class='id'>" + session.id + "</span> " + escapeHtml(session.title) + "</span><span class='" + (mark === "next" ? "now" : "id") + "'>" + escapeHtml(mark) + "</span></li>";
-        }).join("");
-        main.innerHTML = "<ol class='list'>" + items + "</ol>";
+      if (state.view === "path") {
+        renderPath(title, main);
         return;
       }
+      renderToday(title, main);
+    }
+
+    function renderToday(title, main) {
       const next = DSA.nextSession(state.sessions, state.done);
       if (!next) {
         title.textContent = "Plan complete";
-        main.innerHTML = "<article class='card'><p>Open the full plan and use the maintenance loop at the bottom: one redo, and one new problem, twice a week.</p></article>";
+        main.innerHTML = "<article class='card'><p>Open the path and use the maintenance loop in the full plan: one redo, and one new problem, twice a week.</p></article>";
         return;
       }
+      const step = DSA.stepFor(next.id);
+      const stats = step ? DSA.chapterStats(step.chapter, state.sessions, state.done) : null;
       title.textContent = "Next session";
-      const body = DSA.sectionBody(state.plan, next.id);
       const canUndo = state.sessions.some(function (session) {
         return !session.checked && state.done[session.id];
       });
       main.innerHTML =
         "<article class='card'>" +
+          "<div class='meta-row'>" +
+            (step ? pill(step.difficulty) : "") +
+            (step ? "<span class='where'>" + escapeHtml(step.pattern) + " · " + escapeHtml(step.chapter.name) + " · " + stats.finished + " of " + stats.total + " in this chapter</span>" : "") +
+          "</div>" +
           "<p class='session-id'>" + next.id + "</p>" +
           "<h2>" + escapeHtml(next.title) + "</h2>" +
-          "<div class='markdown'>" + renderMarkdown(body) + "</div>" +
+          watchBox(step) +
+          "<button type='button' class='textlink' id='show-path'>See this on the pattern path</button>" +
+          "<div class='markdown'>" + renderMarkdown(DSA.sectionBody(state.plan, next.id)) + "</div>" +
           "<button type='button' class='primary' id='finish'>I finished " + next.id + "</button>" +
           (canUndo ? "<button type='button' class='ghost' id='undo'>Undo the last finish</button>" : "") +
         "</article>";
-      document.getElementById("finish").addEventListener("click", function () {
-        state.done = DSA.markDone(state.done, next.id, DSA.localDate(new Date()));
-        saveDone();
-        render();
+    }
+
+    function renderPath(title, main) {
+      const next = DSA.nextSession(state.sessions, state.done);
+      const fallback = next ? DSA.stepFor(next.id).chapter.id : DSA.chapters[0].id;
+      const chapterId = state.chapterId || fallback;
+      const chapter = DSA.chapters.filter(function (item) { return item.id === chapterId; })[0] || DSA.chapters[0];
+      title.textContent = "Pattern path";
+      const patterns = [];
+      chapter.steps.forEach(function (step) {
+        if (patterns.indexOf(step[1]) < 0) patterns.push(step[1]);
       });
-      const undo = document.getElementById("undo");
-      if (undo) {
-        undo.addEventListener("click", function () {
-          state.done = DSA.undoLast(state.sessions, state.done);
-          saveDone();
-          render();
-        });
+      const stats = DSA.chapterStats(chapter, state.sessions, state.done);
+      const chapters = DSA.chapters.map(function (item, index) {
+        const itemStats = DSA.chapterStats(item, state.sessions, state.done);
+        const current = item.id === chapter.id;
+        return "<button type='button' data-chapter='" + item.id + "' aria-current='" + current + "'>" + (index + 1) + " " + escapeHtml(item.name) + " · " + itemStats.finished + "/" + itemStats.total + "</button>";
+      }).join("");
+      const filters = ["all"].concat(patterns).map(function (name) {
+        const current = state.filter === name;
+        return "<button type='button' class='chip' data-filter='" + escapeHtml(name) + "' aria-current='" + current + "'>" + (name === "all" ? "All patterns" : escapeHtml(name)) + "</button>";
+      }).join("");
+      const steps = chapter.steps.filter(function (step) {
+        return state.filter === "all" || step[1] === state.filter;
+      }).map(function (step, index) {
+        const session = sessionById(step[0]);
+        const done = session && DSA.isDone(session, state.done);
+        const isNext = next && next.id === step[0];
+        const cls = "step" + (isNext ? " now" : "") + (done ? " done" : "");
+        const mark = done ? "✓" : String(index + 1);
+        return "<button type='button' class='" + cls + "' data-open='" + step[0] + "'>" +
+          "<span class='n'>" + mark + "</span>" +
+          "<span><span class='who'>" + escapeHtml(step[1]) + (isNext ? " · now" : "") + "</span><span class='titleline'><strong>" + escapeHtml(session ? session.title : step[0]) + "</strong>" + pill(step[2]) + "</span></span>" +
+          "<p class='bite'>" + escapeHtml(step[3]) + "</p>" +
+        "</button>";
+      }).join("");
+      let detail = "";
+      if (state.reading) {
+        const session = sessionById(state.reading);
+        const step = DSA.stepFor(state.reading);
+        if (session && step) {
+          const isNext = next && next.id === session.id;
+          detail = "<article class='card' id='reading'>" +
+            "<div class='meta-row'>" + pill(step.difficulty) + "<span class='where'>" + escapeHtml(step.pattern) + "</span></div>" +
+            "<p class='session-id'>" + session.id + "</p><h2>" + escapeHtml(session.title) + "</h2>" +
+            watchBox(step) +
+            "<div class='markdown'>" + renderMarkdown(DSA.sectionBody(state.plan, session.id)) + "</div>" +
+            (isNext ? "<button type='button' class='primary' id='finish'>I finished " + session.id + "</button>" : "<p class='countline'>The finish button stays on the next session, so the path keeps its order.</p>") +
+          "</article>";
+        }
       }
+      main.innerHTML =
+        "<div class='chapter-row'>" + chapters + "</div>" +
+        "<p class='blurb'>" + escapeHtml(chapter.blurb) + "</p>" +
+        "<p class='countline'>" + stats.finished + " of " + stats.total + " finished in this chapter. Steps stay in the order you do them. The color is the difficulty.</p>" +
+        "<div class='chip-row'>" + filters + "</div>" +
+        detail +
+        "<div class='steps'>" + steps + "</div>";
     }
 
     async function loadText(name) {
@@ -334,6 +550,57 @@
       });
     });
 
+    document.getElementById("main").addEventListener("click", function (event) {
+      const chapter = event.target.closest("[data-chapter]");
+      if (chapter) {
+        state.chapterId = chapter.dataset.chapter;
+        state.filter = "all";
+        state.reading = null;
+        render();
+        return;
+      }
+      const filter = event.target.closest("[data-filter]");
+      if (filter) {
+        state.filter = filter.dataset.filter;
+        state.reading = null;
+        render();
+        return;
+      }
+      const open = event.target.closest("[data-open]");
+      if (open) {
+        state.reading = state.reading === open.dataset.open ? null : open.dataset.open;
+        render();
+        const reading = document.getElementById("reading");
+        if (reading) reading.scrollIntoView({ block: "start" });
+        return;
+      }
+      if (event.target.id === "show-path") {
+        const next = DSA.nextSession(state.sessions, state.done);
+        const step = next && DSA.stepFor(next.id);
+        state.chapterId = step ? step.chapter.id : state.chapterId;
+        state.filter = step ? step.pattern : "all";
+        state.view = "path";
+        history.replaceState(null, "", "#path");
+        render();
+        window.scrollTo(0, 0);
+        return;
+      }
+      if (event.target.id === "finish") {
+        const next = DSA.nextSession(state.sessions, state.done);
+        if (!next) return;
+        state.done = DSA.markDone(state.done, next.id, DSA.localDate(new Date()));
+        state.reading = null;
+        saveDone();
+        render();
+      }
+      if (event.target.id === "undo") {
+        state.done = DSA.undoLast(state.sessions, state.done);
+        state.reading = null;
+        saveDone();
+        render();
+      }
+    });
+
     document.getElementById("copy").addEventListener("click", async function () {
       const text = JSON.stringify(state.done);
       document.getElementById("backup").value = text;
@@ -350,10 +617,10 @@
       } catch (error) {}
     });
 
-    if (!["today", "list", "plan", "method"].includes(state.view)) state.view = "today";
+    if (!VIEWS.includes(state.view)) state.view = "today";
     window.addEventListener("hashchange", function () {
       const view = location.hash.replace("#", "");
-      if (!["today", "list", "plan", "method"].includes(view)) return;
+      if (!VIEWS.includes(view)) return;
       state.view = view;
       render();
       window.scrollTo(0, 0);
