@@ -1,0 +1,9 @@
+{
+  "name": "DSA practice",
+  "short_name": "DSA",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#f4f0e6",
+  "theme_color": "#f4f0e6"
+}

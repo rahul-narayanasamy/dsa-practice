@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#f4f0e6" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-title" content="DSA" />
+  <title>DSA practice</title>
+  <link rel="manifest" href="manifest.webmanifest" />
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231f3d2b'/%3E%3Ctext x='16' y='22' text-anchor='middle' font-size='16' font-family='Georgia' fill='%23f4f0e6'%3ES%3C/text%3E%3C/svg%3E" />
+  <style>
+    :root {
+      color-scheme: light;
+      --ink: #1c1915;
+      --muted: #5c564c;
+      --line: #e2dacb;
+      --paper: #f4f0e6;
+      --card: #fffdf8;
+      --green: #1f3d2b;
+      --green-2: #2f5a40;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      background: var(--paper);
+      color: var(--ink);
+      font: 18px/1.5 Georgia, "Iowan Old Style", Palatino, serif;
+    }
+    header, main, footer { width: min(40rem, calc(100% - 2rem)); margin: 0 auto; }
+    header { padding: 1.25rem 0 0.5rem; }
+    .kicker {
+      margin: 0;
+      color: var(--muted);
+      font: 0.78rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+    h1 { font-size: 1.85rem; line-height: 1.2; margin: 0.35rem 0 0.4rem; }
+    .status { margin: 0; color: var(--muted); font-size: 1rem; }
+    nav {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      padding: 0.9rem 0 0.2rem;
+    }
+    nav button {
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--ink);
+      border-radius: 999px;
+      padding: 0.35rem 0.75rem;
+      font: 0.85rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+    }
+    nav button[aria-current="page"] {
+      background: var(--green);
+      border-color: var(--green);
+      color: #f4f0e6;
+    }
+    .card {
+      background: var(--card);
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      padding: 1rem 1rem 1.1rem;
+      margin: 0.8rem 0 1rem;
+    }
+    .session-id {
+      margin: 0;
+      font: 0.85rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      color: var(--green-2);
+    }
+    button.primary, button.ghost {
+      display: block;
+      width: 100%;
+      min-height: 48px;
+      border-radius: 12px;
+      font: 600 1rem/1.2 ui-sans-serif, system-ui, sans-serif;
+      cursor: pointer;
+    }
+    button.primary {
+      border: 0;
+      background: var(--green);
+      color: #f4f0e6;
+    }
+    button.primary:active { background: var(--green-2); }
+    button.ghost {
+      margin-top: 0.5rem;
+      border: 1px solid var(--line);
+      background: transparent;
+      color: var(--muted);
+    }
+    .markdown h2, .markdown h3 { font-size: 1.15rem; margin: 1.1rem 0 0.4rem; }
+    .markdown p, .markdown li { font-size: 1.02rem; }
+    .markdown a { color: var(--green-2); }
+    .markdown pre {
+      overflow-x: auto;
+      padding: 0.8rem;
+      background: #f6f1e6;
+      border-radius: 10px;
+      font-size: 0.86rem;
+    }
+    .markdown code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; font-size: 0.9em; }
+    .markdown details { margin: 0.8rem 0; }
+    .list { list-style: none; padding: 0; margin: 0.6rem 0 1.4rem; }
+    .list li {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.8rem;
+      padding: 0.65rem 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 1rem;
+    }
+    .list .id { font: 0.85rem/1.4 ui-sans-serif, system-ui, sans-serif; color: var(--muted); }
+    .list .now { color: var(--green-2); font-weight: 700; }
+    footer {
+      padding: 0.2rem 0 2.5rem;
+      color: var(--muted);
+      font: 0.85rem/1.45 ui-sans-serif, system-ui, sans-serif;
+    }
+    textarea {
+      width: 100%;
+      min-height: 5rem;
+      margin: 0.4rem 0;
+      font: 0.8rem/1.4 ui-monospace, Menlo, monospace;
+    }
+    .row { display: flex; gap: 0.5rem; }
+    .row button { flex: 1; }
+    .error { color: #8a2b16; }
+  </style>
+</head>
+<body>
+  <header>
+    <p class="kicker">DSA practice</p>
+    <h1 id="title">Loading the next session</h1>
+    <p class="status" id="status"></p>
+    <nav aria-label="Sections">
+      <button type="button" data-view="today">Today</button>
+      <button type="button" data-view="list">Sessions</button>
+      <button type="button" data-view="plan">Full plan</button>
+      <button type="button" data-view="method">How to solve</button>
+    </nav>
+  </header>
+  <main id="main"></main>
+  <footer>
+    <p>Saved in this browser. The same check on your phone and on your laptop are separate.</p>
+    <details>
+      <summary>Copy or restore progress</summary>
+      <textarea id="backup" spellcheck="false"></textarea>
+      <div class="row">
+        <button type="button" class="ghost" id="copy">Copy</button>
+        <button type="button" class="ghost" id="restore">Restore</button>
+      </div>
+    </details>
+  </footer>
+  <script src="site.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked@15.0.12/marked.min.js"></script>
+  <script>
+    const DONE_KEY = "dsa-practice-done-v1";
+    const CACHE_KEY = "dsa-practice-cache-v1";
+    const state = {
+      view: location.hash.replace("#", "") || "today",
+      sessions: [],
+      plan: "",
+      method: "",
+      done: loadDone(),
+      error: "",
+    };
+
+    function loadDone() {
+      try {
+        const parsed = JSON.parse(localStorage.getItem(DONE_KEY) || "{}");
+        return parsed && typeof parsed === "object" ? parsed : {};
+      } catch (error) {
+        return {};
+      }
+    }
+
+    function saveDone() {
+      localStorage.setItem(DONE_KEY, JSON.stringify(state.done));
+    }
+
+    function renderMarkdown(text) {
+      if (!window.marked) return "<pre>" + escapeHtml(text) + "</pre>";
+      const html = marked.parse(text, { gfm: true });
+      const holder = document.createElement("div");
+      holder.innerHTML = html;
+      holder.querySelectorAll("a").forEach(function (link) {
+        const href = link.getAttribute("href") || "";
+        if (href.includes("HOW-TO-SOLVE.md")) link.setAttribute("href", "#method");
+        else if (href.includes("PLAN.md")) link.setAttribute("href", "#plan");
+        else if (href.includes("PROGRESS.md")) link.setAttribute("href", "#list");
+        else if (/^https?:/.test(href)) {
+          link.setAttribute("target", "_blank");
+          link.setAttribute("rel", "noopener noreferrer");
+        }
+      });
+      return holder.innerHTML;
+    }
+
+    function escapeHtml(text) {
+      return text
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;");
+    }
+
+    function weekSentence() {
+      const today = DSA.localDate(new Date());
+      const count = DSA.weekCount(state.sessions, state.done, today);
+      const finished = DSA.finishedCount(state.sessions, state.done);
+      const total = state.sessions.length;
+      if (!total) return "";
+      if (finished >= total) {
+        return "You finished the 108 sessions. Two sittings a week keep the skill: one redo, and one new problem in a pattern you already know.";
+      }
+      if (count === 0) {
+        return "This week: 0 finished. One finished session completes the week. " + finished + " of " + total + " done overall.";
+      }
+      return "This week: " + count + " finished. The week already counts. " + finished + " of " + total + " done overall.";
+    }
+
+    function render() {
+      const title = document.getElementById("title");
+      const status = document.getElementById("status");
+      const main = document.getElementById("main");
+      document.querySelectorAll("nav button").forEach(function (button) {
+        button.setAttribute("aria-current", button.dataset.view === state.view ? "page" : "false");
+      });
+      if (state.error) {
+        title.textContent = "The plan did not load";
+        status.textContent = "";
+        main.innerHTML = '<p class="error">' + escapeHtml(state.error) + "</p>";
+        return;
+      }
+      status.textContent = weekSentence();
+      if (state.view === "plan") {
+        title.textContent = "Full plan";
+        main.innerHTML = '<article class="markdown">' + renderMarkdown(state.plan) + "</article>";
+        return;
+      }
+      if (state.view === "method") {
+        title.textContent = "How to solve one problem";
+        main.innerHTML = '<article class="markdown">' + renderMarkdown(state.method) + "</article>";
+        return;
+      }
+      if (state.view === "list") {
+        title.textContent = "All sessions";
+        const next = DSA.nextSession(state.sessions, state.done);
+        const items = state.sessions.map(function (session) {
+          const done = DSA.isDone(session, state.done);
+          const mark = done ? state.done[session.id] || "in the notes" : next && next.id === session.id ? "next" : "";
+          return "<li><span><span class='id'>" + session.id + "</span> " + escapeHtml(session.title) + "</span><span class='" + (mark === "next" ? "now" : "id") + "'>" + escapeHtml(mark) + "</span></li>";
+        }).join("");
+        main.innerHTML = "<ol class='list'>" + items + "</ol>";
+        return;
+      }
+      const next = DSA.nextSession(state.sessions, state.done);
+      if (!next) {
+        title.textContent = "Plan complete";
+        main.innerHTML = "<article class='card'><p>Open the full plan and use the maintenance loop at the bottom: one redo, and one new problem, twice a week.</p></article>";
+        return;
+      }
+      title.textContent = "Next session";
+      const body = DSA.sectionBody(state.plan, next.id);
+      const canUndo = state.sessions.some(function (session) {
+        return !session.checked && state.done[session.id];
+      });
+      main.innerHTML =
+        "<article class='card'>" +
+          "<p class='session-id'>" + next.id + "</p>" +
+          "<h2>" + escapeHtml(next.title) + "</h2>" +
+          "<div class='markdown'>" + renderMarkdown(body) + "</div>" +
+          "<button type='button' class='primary' id='finish'>I finished " + next.id + "</button>" +
+          (canUndo ? "<button type='button' class='ghost' id='undo'>Undo the last finish</button>" : "") +
+        "</article>";
+      document.getElementById("finish").addEventListener("click", function () {
+        state.done = DSA.markDone(state.done, next.id, DSA.localDate(new Date()));
+        saveDone();
+        render();
+      });
+      const undo = document.getElementById("undo");
+      if (undo) {
+        undo.addEventListener("click", function () {
+          state.done = DSA.undoLast(state.sessions, state.done);
+          saveDone();
+          render();
+        });
+      }
+    }
+
+    async function loadText(name) {
+      const response = await fetch(name);
+      if (!response.ok) throw new Error("Could not load " + name);
+      return response.text();
+    }
+
+    async function start() {
+      try {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+        const [progress, plan, method] = await Promise.all([
+          loadText("PROGRESS.md"),
+          loadText("PLAN.md"),
+          loadText("HOW-TO-SOLVE.md"),
+        ]);
+        state.sessions = DSA.parseSessions(progress);
+        state.plan = plan;
+        state.method = method;
+        localStorage.setItem(CACHE_KEY, JSON.stringify({ progress: progress, plan: plan, method: method }));
+      } catch (error) {
+        const cached = JSON.parse(localStorage.getItem(CACHE_KEY) || "null");
+        if (!cached) {
+          state.error = "This page needs the plan files beside it. Open the hosted site, or run a local server from the dsa-practice folder.";
+          render();
+          return;
+        }
+        state.sessions = DSA.parseSessions(cached.progress);
+        state.plan = cached.plan;
+        state.method = cached.method;
+      }
+      if (!state.sessions.length) {
+        state.error = "No sessions were found in PROGRESS.md.";
+      }
+      render();
+    }
+
+    document.querySelectorAll("nav button").forEach(function (button) {
+      button.addEventListener("click", function () {
+        state.view = button.dataset.view;
+        history.replaceState(null, "", "#" + state.view);
+        render();
+        window.scrollTo(0, 0);
+      });
+    });
+
+    document.getElementById("copy").addEventListener("click", async function () {
+      const text = JSON.stringify(state.done);
+      document.getElementById("backup").value = text;
+      try { await navigator.clipboard.writeText(text); } catch (error) {}
+    });
+
+    document.getElementById("restore").addEventListener("click", function () {
+      try {
+        const parsed = JSON.parse(document.getElementById("backup").value || "{}");
+        if (!parsed || typeof parsed !== "object" || Array.isArray(parsed)) return;
+        state.done = parsed;
+        saveDone();
+        render();
+      } catch (error) {}
+    });
+
+    if (!["today", "list", "plan", "method"].includes(state.view)) state.view = "today";
+    window.addEventListener("hashchange", function () {
+      const view = location.hash.replace("#", "");
+      if (!["today", "list", "plan", "method"].includes(view)) return;
+      state.view = view;
+      render();
+      window.scrollTo(0, 0);
+    });
+    start();
+  </script>
+</body>
+</html>
