@@ -379,7 +379,7 @@
       const total = state.sessions.length;
       if (!total) return "";
       if (finished >= total) {
-        return "You finished the 108 sessions. Two sittings a week keep the skill: one redo, and one new problem in a pattern you already know.";
+        return "You finished all " + total + " sessions. Two sittings a week keep the skill: one redo, and one new problem in a pattern you already know.";
       }
       if (count === 0) {
         return "This week: 0 finished. One finished session completes the week. " + finished + " of " + total + " done overall.";

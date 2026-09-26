@@ -97,6 +97,23 @@ Use this after you have seen the pattern once in the plan. Before that, follow t
 | "Number of ways" or "best score" with overlapping subproblems | Recursion plus a memo, then a table if asked |
 | Prefixes of words, autocomplete | Trie |
 | "Are these in the same group?" as edges arrive | Union-find |
+| Sort a general array and keep equal items in order | Merge sort |
+| Sort integers from a small range | Counting sort |
+| A value appears twice, find the single one, or add without `+` | Bits, usually XOR |
+| Primes up to n, or a huge power | Sieve, or fast exponentiation |
+| A local choice you can prove is safe | Greedy |
+| Shortest path, every weight positive | Dijkstra |
+| Shortest path with a limit on the number of edges, or a negative weight | Bellman-Ford |
+| Connect every node at minimum cost | Minimum spanning tree |
+| Two groups, no edge inside a group | Bipartite coloring |
+| All pairs, and n is small | Floyd-Warshall |
+| As much as you can push from source to sink | Max flow, residual graph |
+| Range sums, and the array also changes at one index | Fenwick tree or segment tree |
+| Find one fixed word in a long text | Rolling hash or KMP |
+| Subset that hits an exact sum, each item once | 0/1 knapsack, loop the sums downward |
+| Turn one string into another | Edit distance |
+| Insert or delete in a binary search tree | BST update. Two children uses the successor |
+| The tree became a chain | A rotation |
 
 ## JavaScript habits that affect correctness
 

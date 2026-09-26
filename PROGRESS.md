@@ -160,3 +160,85 @@ A week with one checked box is a finished week. Reviews and checkpoints stay in 
 - [ ] S106 · Merge Intervals, 35 min
 - [ ] S107 · One problem from the Later table
 - [ ] S108 · Mock: Course Schedule, then Coin Change
+
+## Part 2 — Sorting from scratch
+
+S108 is interview ready. These chapters are the rest of DSA.
+
+- [ ] S109 · Merge sort
+- [ ] S110 · Quicksort
+- [ ] S111 · Counting sort
+- [ ] S112 · Review: merge sort
+
+## Part 2 — Bits
+
+- [ ] S113 · Single Number
+- [ ] S114 · Number of 1 Bits
+- [ ] S115 · Missing Number
+- [ ] S116 · Sum of Two Integers
+- [ ] S117 · Subsets by bits
+
+## Part 2 — Numbers
+
+- [ ] S118 · GCD and LCM
+- [ ] S119 · Count Primes
+- [ ] S120 · Pow(x, n)
+- [ ] S121 · Review: GCD and the sieve
+
+## Part 2 — Greedy
+
+- [ ] S122 · Jump Game
+- [ ] S123 · Jump Game II
+- [ ] S124 · Gas Station
+- [ ] S125 · Partition Labels
+- [ ] S126 · Review: Jump Game
+- [ ] S127 · Checkpoint: explain Gas Station
+
+## Part 2 — Weighted graphs
+
+- [ ] S128 · Network Delay Time
+- [ ] S129 · Cheapest Flights Within K Stops
+- [ ] S130 · Min Cost to Connect All Points
+- [ ] S131 · Prim's algorithm
+- [ ] S132 · Is Graph Bipartite
+- [ ] S133 · Find the City
+- [ ] S134 · Review: Network Delay Time
+- [ ] S135 · Max flow (stretch)
+- [ ] S136 · Checkpoint: Dijkstra and a spanning tree
+
+## Part 2 — Range queries
+
+- [ ] S137 · Range Sum Query, immutable
+- [ ] S138 · Fenwick tree
+- [ ] S139 · Range Sum Query, mutable
+- [ ] S140 · Segment tree
+- [ ] S141 · Review: Fenwick tree
+- [ ] S142 · Lazy propagation (stretch)
+
+## Part 2 — Strings under the hood
+
+- [ ] S143 · Rabin-Karp
+- [ ] S144 · Find the Index of the First Occurrence
+- [ ] S145 · KMP
+- [ ] S146 · Review: KMP on paper
+- [ ] S147 · Checkpoint: hash, KMP, or trie
+
+## Part 2 — Dynamic programming, the rest
+
+- [ ] S148 · Partition Equal Subset Sum
+- [ ] S149 · Coin Change II
+- [ ] S150 · Edit Distance
+- [ ] S151 · Longest Increasing Subsequence, faster
+- [ ] S152 · Maximal Square
+- [ ] S153 · Review: Partition Equal Subset Sum
+- [ ] S154 · Burst Balloons (stretch)
+- [ ] S155 · Checkpoint: knapsack and edit distance
+
+## Part 2 — Trees that stay correct
+
+- [ ] S156 · Insert into a Binary Search Tree
+- [ ] S157 · Delete Node in a BST
+- [ ] S158 · Rotations
+- [ ] S159 · Review: Delete Node in a BST
+- [ ] S160 · Pick the structure
+- [ ] S161 · Final: five explanations, then one problem

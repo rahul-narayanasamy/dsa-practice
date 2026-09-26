@@ -363,3 +363,243 @@ Filled at S95.
 **Cost:**
 
 **Wrong turn I already made:**
+
+## Sorting
+
+Filled at S109. Add a line at S110 and S111.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Bits
+
+Filled at S113.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Numbers
+
+Filled at S118. The sieve goes here too.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Greedy
+
+Filled at S122.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Dijkstra
+
+Filled at S128.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Bellman-Ford
+
+Filled at S129.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Minimum spanning tree
+
+Filled at S130. Add Prim at S131.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Bipartite
+
+Filled at S132.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Floyd-Warshall
+
+Filled at S133.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Max flow
+
+Filled at S135.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Prefix sums
+
+Filled at S137, if the prefix-products note does not already cover a range subtraction.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Fenwick tree
+
+Filled at S138.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Segment tree
+
+Filled at S140.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Rolling hash
+
+Filled at S143.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## KMP
+
+Filled at S145.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Knapsack
+
+Filled at S148.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Edit distance
+
+Filled at S150.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Patience sorting
+
+Filled at S151.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## BST update
+
+Filled at S156. Add the delete case at S157.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**
+
+## Rotations
+
+Filled at S158.
+
+**I reach for this when:**
+
+**The move:**
+
+**Cost:**
+
+**Wrong turn I already made:**

@@ -1,6 +1,12 @@
 # Plan
 
-108 sessions. Do the first unchecked box in [PROGRESS.md](PROGRESS.md). Open this file at that session, then close it while you code.
+161 sessions, in two parts. Do the first unchecked box in [PROGRESS.md](PROGRESS.md). Open this file at that session, then close it while you code.
+
+**Part 1, S01–S108, is interview ready.** The patterns companies ask for, then the same patterns under a clock.
+
+**Part 2, S109–S161, is the rest of DSA.** Sorting from scratch, bits and numbers, greedy proofs, weighted graphs, range trees, string search, the knapsack family, and balanced trees. This is what makes the subject yours, including the algorithms-heavy interview that Part 1 does not pretend to cover.
+
+Do Part 1 first. Part 2 uses those tools. Finishing S108 and stopping is a complete interview plan. Finishing S161 is the full plan.
 
 Rules that apply to every session:
 
@@ -1480,16 +1486,771 @@ Write, under the log row, what you would tell the interviewer in the first three
 
 ---
 
-## After S108
+## Part 2 — The rest of DSA
 
-Keep two sessions a week for as long as you want the skill, and through any interview loop.
+S108 is the interview finish line. Part 2 is why you can also say you know DSA, not only the interview list.
 
-- Session A is a redo from a phase you have not touched in a while. New file, notes closed.
-- Session B is one new medium in a pattern you already know. NeetCode 150 is a reasonable catalog for picking that problem. Same clock, same log.
+Same rules. One session, hints closed for 35 minutes, reviews from a blank file. Stretch sessions can be logged as `later`. If Later still has a Part 2 problem when you reach S161, the code half of S161 is that problem.
 
-If you vanish for weeks: one short redo of the last problem you remember solving. Then the two-session week. The 108 do not reset.
+The new pattern notes go in [patterns/NOTES.md](patterns/NOTES.md), under the headings named in each session.
 
-Extra mocks, when you want a full hour. Same rules as S108.
+---
+
+## Phase 11 — Sorting from scratch
+
+`Array.prototype.sort` is a tool you already use. This phase is how a sort works, what it costs, and which sort fits which data.
+
+### S109 · Merge sort
+
+Medium · long is fine. No LeetCode. File: `problems/s109-merge-sort.js`
+
+Implement `mergeSort(nums)` so it returns a new sorted array. Do not call the built-in sort. Test `[5, 1, 4, 2, 8]`, `[]`, `[1]`, and `[3, 3, 1]`. The equal `3`s must stay in their original order. That property is called stability, and merge sort has it.
+
+Fill **Sorting** in [patterns/NOTES.md](patterns/NOTES.md).
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Split until each piece has one item. Merge two sorted lists with two pointers, always taking the smaller head. A tie takes the left piece, which is what keeps equals stable. The depth of splits is about log n, and each level copies n items, so the cost is n log n. The extra arrays are the memory cost.
+
+</details>
+
+### S110 · Quicksort
+
+Medium. File: `problems/s110-quicksort.js`
+
+Implement `quickSort(nums)` in place. Test the same arrays as S109, plus a reverse-sorted array of 20 numbers. Equal values may change order. Quicksort is not stable.
+
+Add one line to **Sorting**: worst case versus the usual case.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Pick the last item as the pivot. Partition so everything smaller is on the left and everything larger is on the right. Recurse on each side. A pivot that is always the smallest item degenerates toward n². A random pivot, or a median of three, makes that rare. Average cost is n log n. Extra memory is the recursion stack.
+
+</details>
+
+### S111 · Counting sort
+
+Medium. File: `problems/s111-counting-sort.js`
+
+`countingSort(nums)` sorts integers that are between 0 and 20 inclusive. Test `[4, 1, 4, 0, 3]`. It must be stable. Then write, in a comment, when this beats merge sort and when it does not.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Count how many times each value appears. Turn the counts into starting positions. Walk the input from the end, place each value at its position, and step that position backward. Walking from the end is what keeps it stable. Cost is n + k, where k is the value range. A huge range makes the count array the problem.
+
+</details>
+
+### S112 · Review
+
+New file. Redo merge sort from memory, 30 minutes. Notes closed. Say the cost and why the equal-element test passes.
+
+---
+
+## Phase 12 — Bits
+
+Bits are the representation under the integers you have been using. A handful of problems make the operators mean something.
+
+### S113 · Single Number
+
+[Single Number](https://leetcode.com/problems/single-number/) · Easy · normal
+
+File: `problems/s113-single-number.js`
+
+Every value appears twice, except one. Fill **Bits**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+XOR a number with itself is 0. XOR with 0 is the number. XOR is commutative. Fold the whole array with XOR and the pairs disappear.
+
+</details>
+
+### S114 · Number of 1 Bits
+
+[Number of 1 Bits](https://leetcode.com/problems/number-of-1-bits/) · Easy · normal
+
+File: `problems/s114-hamming-weight.js`
+
+Also implement `isPowerOfTwo(n)` in the same file. [Power of Two](https://leetcode.com/problems/power-of-two/). `n & (n - 1)` is the idea to learn.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`n & (n - 1)` clears the lowest set bit. Count how many times you can do that until n is 0. A power of two has exactly one set bit, so clearing it once leaves 0. Reject n ≤ 0.
+
+</details>
+
+### S115 · Missing Number
+
+[Missing Number](https://leetcode.com/problems/missing-number/) · Easy · normal
+
+File: `problems/s115-missing-number.js`
+
+The array holds every number from 0 to n except one.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+XOR every index and every value together, and also XOR n. Pairs cancel. The missing number remains. The sum formula `n * (n + 1) / 2` minus the array sum is the other valid answer. Know both.
+
+</details>
+
+### S116 · Sum of Two Integers
+
+[Sum of Two Integers](https://leetcode.com/problems/sum-of-two-integers/) · Medium · normal
+
+File: `problems/s116-sum-integers.js`
+
+Add without `+` or `-`. In JavaScript, integers are wider than 32 bits, so keep the work in 32 bits.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+XOR is the sum if you ignore carries. `a & b` shifted left by one is the carry. Repeat until the carry is 0. Mask with `0xffffffff` if the sign bit starts spreading. Include a negative test.
+
+</details>
+
+### S117 · Subsets by bits
+
+Medium. Same problem as S69: [Subsets](https://leetcode.com/problems/subsets/). New method.
+
+File: `problems/s117-subsets-bits.js`
+
+S69's file stays closed. There are `2^n` subsets. Each integer from 0 to `2^n - 1` is one subset: bit i set means include `nums[i]`.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Loop `mask` from 0 to `(1 << nums.length) - 1`. For each mask, walk the bit positions and push `nums[i]` when `mask & (1 << i)` is non-zero. This is the same set of answers as backtracking, listed by number instead of by recursion. It is only comfortable while n is small, about 20.
+
+</details>
+
+---
+
+## Phase 13 — Numbers
+
+The math that shows up in algorithms is small: divisors, primes, and fast powers.
+
+### S118 · GCD and LCM
+
+Easy. File: `problems/s118-gcd.js`
+
+`gcd(a, b)` by Euclid's algorithm. `lcm(a, b)` is `a / gcd(a, b) * b`. Do the division first so the product does not overflow a case you can still compute. Test `gcd(48, 18) === 6` and `lcm(4, 6) === 12`. Fill **Numbers**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`gcd(a, 0)` is a. Otherwise `gcd(b, a % b)`. The remainder gets smaller every call, so it ends. LCM follows from `gcd * lcm === a * b`, with the division ordered to stay smaller.
+
+</details>
+
+### S119 · Count Primes
+
+[Count Primes](https://leetcode.com/problems/count-primes/) · Medium · normal
+
+File: `problems/s119-count-primes.js`
+
+How many primes are strictly less than n.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+The sieve of Eratosthenes. A boolean array, index i means "i is still possibly prime". For each p from 2 up to sqrt(n), if p is still marked prime, mark `p*p, p*p+p, p*p+2p, ...` as composite. Count what remains. Cost is about n log log n. Trial division of every number up to n is the slow version.
+
+</details>
+
+### S120 · Pow(x, n)
+
+[Pow(x, n)](https://leetcode.com/problems/powx-n/) · Medium · normal
+
+File: `problems/s120-pow.js`
+
+Implement fast exponentiation. n can be negative. A loop that multiplies x, n times, is the slow version, and it is not done.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`x^n = (x^(n/2))^2` when n is even, and `x * (x^(n/2))^2` when n is odd. That is log n multiplications. For a negative n, compute the positive power and take the reciprocal. In JavaScript, halve with `Math.floor` and watch `n === -2147483648`, where negating n does not fit in 32 bits. Use a long-enough integer path, or halve before you negate.
+
+</details>
+
+### S121 · Review
+
+New file. Redo `gcd` and the sieve, 20 minutes each. Say the cost of the sieve before you check notes.
+
+---
+
+## Phase 14 — Greedy
+
+A greedy algorithm takes the local choice that you can prove does not ruin the future. "It worked on the sample" is not the proof. Intervals in Part 1 were already this idea. Here you name it.
+
+### S122 · Jump Game
+
+[Jump Game](https://leetcode.com/problems/jump-game/) · Medium · normal
+
+File: `problems/s122-jump-game.js`
+
+Fill **Greedy**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Walk left to right and remember the farthest index you can reach so far. If your current index is ever beyond that farthest index, you are stuck. If the farthest index reaches the last index, you can finish.
+
+</details>
+
+### S123 · Jump Game II
+
+[Jump Game II](https://leetcode.com/problems/jump-game-ii/) · Medium · normal
+
+File: `problems/s123-jump-game-ii.js`
+
+You can reach the end. Return the fewest jumps.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+The current jump covers a window of indexes. Scan that window and remember the farthest index the next jump could reach. When the window ends, you must take one jump, and the next window ends at that farthest index.
+
+</details>
+
+### S124 · Gas Station
+
+[Gas Station](https://leetcode.com/problems/gas-station/) · Medium · normal
+
+File: `problems/s124-gas-station.js`
+
+One circular route. Return the starting station index, or -1.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+If the total gas is less than the total cost, no start works. Otherwise a start exists. Walk once. When the tank would go negative, the failed start and everything before the failure cannot be the answer. The next index is the new candidate. One pass is enough because the total already promised a solution.
+
+</details>
+
+### S125 · Partition Labels
+
+[Partition Labels](https://leetcode.com/problems/partition-labels/) · Medium · normal
+
+File: `problems/s125-partition-labels.js`
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Record the last index of every letter. Walk left to right. Extend the end of the current part to the last index of each letter you see. When your index catches that end, every letter in the part is finished. Cut there and start the next part.
+
+</details>
+
+### S126 · Review
+
+New file. Redo Jump Game, 25 minutes. Before coding, say the sentence that proves the farthest-index choice is safe.
+
+### S127 · Checkpoint
+
+No new problem. 20 minutes, notes closed. On paper, for Gas Station: why a failed prefix can never contain the real start, and why one surviving candidate is enough when the totals allow a trip. If you cannot write that, the next session is Gas Station again.
+
+---
+
+## Phase 15 — Weighted graphs
+
+Part 1 graphs were unweighted: every step cost 1, so BFS found the shortest path. Here edges have weights.
+
+### S128 · Network Delay Time
+
+[Network Delay Time](https://leetcode.com/problems/network-delay-time/) · Medium · long
+
+File: `problems/s128-network-delay.js`
+
+Dijkstra. Fill **Dijkstra**. You may reuse the shape of `lib/heap.js`. Edge weights are positive.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Build an adjacency list of `[neighbor, weight]`. Distances start at infinity, except the source at 0. A min-heap holds `[distance, node]`. Pop the closest unfinished node. For each edge out of it, if `distance[node] + weight` improves the neighbor, update and push. When the heap is empty, the answer is the largest finite distance, or -1 if any node is still infinity. With non-negative weights, the first time you pop a node its distance is final.
+
+</details>
+
+### S129 · Cheapest Flights Within K Stops
+
+[Cheapest Flights Within K Stops](https://leetcode.com/problems/cheapest-flights-within-k-stops/) · Medium · normal
+
+File: `problems/s129-cheapest-flights.js`
+
+At most k stops. Dijkstra's "first pop is final" rule is the wrong tool, because a worse price with fewer stops can still win. Fill **Bellman-Ford**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Relax every edge once, and that allows paths of one edge. Do it again for paths of two edges. At most k stops means at most k + 1 edges, so relax k + 1 rounds. Copy the distance array at the start of each round so a path cannot use an edge that was relaxed earlier in the same round. If the destination is still infinity, return -1.
+
+</details>
+
+### S130 · Min Cost to Connect All Points
+
+[Min Cost to Connect All Points](https://leetcode.com/problems/min-cost-to-connect-all-points/) · Medium · normal
+
+File: `problems/s130-min-cost-points.js`
+
+A minimum spanning tree, Kruskal's algorithm. You already have union-find from S94. Fill **Minimum spanning tree**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+An edge between two points costs the Manhattan distance. Sort edges by cost. Add an edge when its ends are in different components, then union them. Stop when you have added n - 1 edges. The sum of those costs is the answer. Sorting dominates: about e log e.
+
+</details>
+
+### S131 · Prim's algorithm
+
+Medium. File: `problems/s131-prim.js`
+
+Grow a minimum spanning tree from node 0. Return the total weight. Five nodes, numbered 0 through 4. Undirected edges, written `[a, b, weight]`: `[0,1,1]`, `[1,2,4]`, `[0,3,3]`, `[1,4,2]`, `[3,4,5]`. The answer is 10.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Start with node 0 in the tree. A min-heap holds edges that leave the tree, ordered by weight. Pop the cheapest edge. If its far end is already in the tree, skip it. Otherwise add that node and push its outward edges. The first time a node is added, the edge that added it is in the tree. Stop when every node is in. Sum those edges.
+
+</details>
+
+### S132 · Is Graph Bipartite
+
+[Is Graph Bipartite](https://leetcode.com/problems/is-graph-bipartite/) · Medium · normal
+
+File: `problems/s132-bipartite.js`
+
+Fill **Bipartite**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Color nodes with two colors. BFS or DFS from every uncolored node. A neighbor must take the other color. If a neighbor is already colored with your color, the graph is not bipartite. An odd cycle is the picture of that failure.
+
+</details>
+
+### S133 · Find the City
+
+[Find the City With the Smallest Number of Neighbors at a Threshold Distance](https://leetcode.com/problems/find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance/) · Medium · normal
+
+File: `problems/s133-find-city.js`
+
+All-pairs shortest paths. Fill **Floyd-Warshall**. n is small.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+A distance matrix. Missing edges start at infinity, and the diagonal is 0. For each possible middle city k, and each pair i, j, `dist[i][j] = min(dist[i][j], dist[i][k] + dist[k][j])`. The k loop is the outer loop. That order is the algorithm. Then, for each city, count other cities within the threshold. The answer is the city with the smallest count, breaking ties toward the larger index. Cost is n³.
+
+</details>
+
+### S134 · Review
+
+New file. Redo Network Delay Time, 30 minutes. Say why the first time you pop a node, its distance is final, and why that sentence is false when an edge weight can be negative.
+
+### S135 · Max flow
+
+Stretch · long. File: `problems/s135-max-flow.js`
+
+A flow network. Send as much as you can from `s` to `t`.
+
+Edges, written as `[from, to, capacity]`:
+
+- `s → a`, 2
+- `s → b`, 1
+- `a → t`, 1
+- `a → b`, 1
+- `b → t`, 2
+
+The maximum flow is 3. Fill **Max flow** if you solve it. If it stalls after the hint, log `later`.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Keep a residual capacity for every edge, and a reverse edge that starts at 0. While BFS finds a path from s to t in edges that still have residual capacity, the path's bottleneck is the smallest residual on it. Add that bottleneck to the flow. Subtract it from each forward residual and add it to each reverse residual. The reverse edges are how a later path can undo a bad earlier choice. When BFS fails, the flow is maximum.
+
+</details>
+
+### S136 · Checkpoint
+
+Long. 30 minutes each, notes closed.
+
+1. Network Delay Time
+2. Min Cost to Connect All Points
+
+Say which algorithm is which before you code. Dijkstra is one source and non-negative weights. Kruskal is a spanning tree, lightest safe edge, union-find.
+
+---
+
+## Phase 16 — Range queries
+
+A prefix array answers "sum from L to R" until the array starts changing. Then you need a tree.
+
+### S137 · Range Sum Query, immutable
+
+[Range Sum Query - Immutable](https://leetcode.com/problems/range-sum-query-immutable/) · Easy · normal
+
+File: `problems/s137-range-sum.js`
+
+The bridge from Part 1. Fill **Prefix sums** if that note is thin, or add a line: a prefix makes a range into a subtraction.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`prefix[0] = 0`, `prefix[i + 1] = prefix[i] + nums[i]`. The sum from `left` to `right` inclusive is `prefix[right + 1] - prefix[left]`. Building is n. Each query is one step.
+
+</details>
+
+### S138 · Fenwick tree
+
+Medium · long. File: `lib/fenwick.js` and `problems/s138-fenwick-test.js`
+
+A binary indexed tree. Support `add(index, delta)` and `prefixSum(index)`, both about log n, on an array of length n. Use 1-based indexes inside the tree. Fill **Fenwick tree**.
+
+Test: start at zeros, length 6. `add(1, 3)`, `add(3, 2)`, `add(6, 5)`. `prefixSum(1)` is 3, `prefixSum(3)` is 5, `prefixSum(6)` is 10. A range sum from 2 to 6 is `prefixSum(6) - prefixSum(1)`.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Index i is responsible for a block of values ending at i. The block length is the lowest set bit of i, written `i & -i`. `add` walks upward: `i += i & -i`, stopping past n. `prefixSum` walks downward: `i -= i & -i`, until i is 0. Each walk is log n steps.
+
+</details>
+
+### S139 · Range Sum Query, mutable
+
+[Range Sum Query - Mutable](https://leetcode.com/problems/range-sum-query-mutable/) · Medium · normal
+
+File: `problems/s139-range-sum-mutable.js`
+
+Use your Fenwick tree. `update` sets an index to a new value, which means you `add` the difference from the old value. Keep a copy of the current values so you know that difference.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Store the live array beside the tree. `update(index, value)` computes `delta = value - live[index]`, writes the live cell, and calls `add(index + 1, delta)` if the tree is 1-based. `sumRange(left, right)` is `prefixSum(right + 1) - prefixSum(left)`.
+
+</details>
+
+### S140 · Segment tree
+
+Medium · long. File: `lib/segment-tree.js` and `problems/s140-segment-test.js`
+
+Build a segment tree for range sums. `update(index, value)` and `query(left, right)` both run in log n. Fill **Segment tree**.
+
+Start from a zero array of length 6. `update(0, 3)`, `update(2, 2)`, `update(5, 5)`. Then `query(0, 0)` is 3, `query(0, 2)` is 5, `query(0, 5)` is 10, and `query(1, 5)` is 7.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Store the tree in an array of length `4 * n`. The root is index 0 and covers the whole array. The children of i are `2 * i + 1` and `2 * i + 2`. Build bottom-up or by recursion: a leaf holds one array value, a parent holds the sum of its children. A point update rewrites the leaf and every parent up to the root. A range query returns the leaf when the query matches the node exactly, returns 0 when the ranges miss, and otherwise adds the answers from the two children.
+
+</details>
+
+### S141 · Review
+
+New file. Rebuild the Fenwick `add` and `prefixSum` from memory, 25 minutes. The test from S138 has to pass. `lib/fenwick.js` from S138 stays closed. You are writing the tool again.
+
+### S142 · Lazy propagation
+
+Stretch · long. File: `problems/s142-lazy.js`
+
+A segment tree that can add a value to a whole range, not only to one index, and can still query a range sum. Both operations log n.
+
+Test on length 6, zeros. `addRange(1, 3, 2)` then `addRange(3, 5, 1)`. `query(0, 5)` is 9. `query(3, 3)` is 3.
+
+If this stalls after the hint, log `later`. Fenwick plus the plain segment tree are the required tools. Lazy is the one that shows you have the structure, and it is allowed to wait.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Each node stores the sum of its segment and a lazy "add this to every index in my segment, which I have not pushed to my children yet". `addRange` that covers a node completely adds `delta * length` to the sum and adds `delta` to the lazy tag, then returns. A partial overlap pushes the lazy tag to the two children first, clears it, then recurses, then rebuilds the sum from the children. `query` pushes before it reads, the same way.
+
+</details>
+
+---
+
+## Phase 17 — Strings under the hood
+
+Part 1 matched windows and palindromes by scanning. These two algorithms search a fixed needle in a haystack without restarting from scratch, and they explain the trie from the other side.
+
+### S143 · Rabin-Karp
+
+Medium. File: `problems/s143-rabin-karp.js`
+
+`indexOf(haystack, needle)` using a rolling hash. Return the first index, or -1. Test `"hello"` / `"ll"` → 2, `"aaaaa"` / `"bba"` → -1, and a case where two different windows share a hash so you still compare the characters. Fill **Rolling hash**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Treat the needle and each window as a number in base 26, or base 256, modulo a large prime. The next window is `(hash - outgoing * base^(m-1)) * base + incoming`, all mod the prime. A matching hash is a candidate. Confirm it against the real characters, because different strings can share a hash. Expected cost is linear. A bad modulus makes you confirm too often.
+
+</details>
+
+### S144 · Find the Index of the First Occurrence
+
+[Find the Index of the First Occurrence in a String](https://leetcode.com/problems/find-the-index-of-the-first-occurrence-in-a-string/) · Easy · normal
+
+File: `problems/s144-strstr.js`
+
+Solve it with the rolling hash from S143. The built-in `indexOf` does not count.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Same hash as S143. Empty needle returns 0, matching the problem's rule. A needle longer than the haystack returns -1.
+
+</details>
+
+### S145 · KMP
+
+Hard. File: `problems/s145-kmp.js`
+
+Same `indexOf` problem, now with the Knuth-Morris-Pratt failure function. S143's file stays closed. Fill **KMP**. This is the hard string algorithm in the plan. A correct failure function on one example is the win. Full polish can take the long session.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`lps[i]` is the longest proper prefix of `needle[0..i]` that is also a suffix. Proper means not the whole string. Build it with two pointers: `len` is the current matched prefix length. On a match, `lps[i] = len + 1` and both pointers move. On a miss, if `len` is not 0, set `len = lps[len - 1]` without moving i. Search the haystack the same way: on a miss, jump `j` to `lps[j - 1]` instead of restarting the needle at 0. When `j` reaches the needle length, the match started at `i - j + 1`.
+
+</details>
+
+Worked check, which you may look at while building `lps` and then must reproduce: for `"ababaca"`, `lps` is `[0, 0, 1, 2, 3, 0, 1]`.
+
+### S146 · Review
+
+Paper first, then code. Write `lps` for `"aaaa"` and for `"abcab"` with the notes closed. Then implement `indexOf` for those needles. 30 minutes. If the paper is wrong, fix the paper before you code.
+
+`"aaaa"` → `[0, 1, 2, 3]`. `"abcab"` → `[0, 0, 0, 1, 2]`.
+
+### S147 · Checkpoint
+
+No new code for 15 minutes. On paper, say when you would use a rolling hash, when you would use KMP, and when you would use the trie from S91. Then, 25 minutes, implement one of the two searches from a blank file. Your choice, declared before you start.
+
+A fair set of sentences: a hash is simple and expected-linear, with a rare false candidate. KMP is worst-case linear and never rewinds the haystack. A trie is for many needles, or for prefixes, not for one search in one document.
+
+---
+
+## Phase 18 — Dynamic programming, the rest
+
+Part 1 was "a recursive sentence, then a memo". This phase is the families that sentence belongs to: a knapsack, an edit, and a table whose answer improves by binary search.
+
+### S148 · Partition Equal Subset Sum
+
+[Partition Equal Subset Sum](https://leetcode.com/problems/partition-equal-subset-sum/) · Medium · normal
+
+File: `problems/s148-partition-subset.js`
+
+This is 0/1 knapsack in interview clothes. Fill **Knapsack**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+If the total sum is odd, it is impossible. Otherwise ask whether a subset sums to `total / 2`. A boolean array `can[s]` starts with `can[0] = true`. For each number, walk `s` downward from the target to that number, and set `can[s]` if `can[s - number]` was already true. Walking downward is what uses each number at most once. Walking upward would reuse it.
+
+</details>
+
+### S149 · Coin Change II
+
+[Coin Change II](https://leetcode.com/problems/coin-change-ii/) · Medium · normal
+
+File: `problems/s149-coin-change-ii.js`
+
+Part 1's coin change counted the fewest coins. This one counts the combinations. Order of coins inside a combination does not matter.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`ways[0] = 1`. For each coin, walk amounts upward from that coin to the target, adding `ways[amount - coin]` into `ways[amount]`. The coin loop is outside, so each combination is built in coin order and counted once. Putting the amount loop outside counts permutations instead.
+
+</details>
+
+### S150 · Edit Distance
+
+[Edit Distance](https://leetcode.com/problems/edit-distance/) · Hard · long
+
+File: `problems/s150-edit-distance.js`
+
+Insert, delete, or replace a character, each at cost 1. Fill **Edit distance**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+State is the pair of indexes `(i, j)`, meaning the edit distance between the suffixes. If the characters match, the answer is the same pair without those characters. If they differ, the answer is 1 plus the best of three moves: insert (stay on i, advance j), delete (advance i, stay on j), or replace (advance both). Memo on the pair. Falling off one string costs the number of characters left in the other.
+
+</details>
+
+### S151 · Longest Increasing Subsequence, the faster one
+
+[Longest Increasing Subsequence](https://leetcode.com/problems/longest-increasing-subsequence/) · Medium · normal
+
+File: `problems/s151-lis-log.js`
+
+S86's n² solution stays closed. This session is the n log n method. Fill a line on **One-dimensional DP** or start **Patience sorting** in the notes.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Keep `tails`, where `tails[len - 1]` is the smallest possible tail of any increasing subsequence of that length. For each number, binary-search the first tail that is greater than or equal to it, and replace that tail. If the number is larger than every tail, append it. The length of `tails` is the answer. The array is not the subsequence itself. It is only long enough.
+
+</details>
+
+### S152 · Maximal Square
+
+[Maximal Square](https://leetcode.com/problems/maximal-square/) · Medium · normal
+
+File: `problems/s152-maximal-square.js`
+
+A 2D table with a meaning you can say in one sentence.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`dp[r][c]` is the side length of the largest square whose bottom-right corner is `(r, c)`. A zero in the matrix forces 0. A one is 1 plus the minimum of the three neighbors: above, left, and above-left. The answer is the square of the largest side you ever write.
+
+</details>
+
+### S153 · Review
+
+New file. Redo Partition Equal Subset Sum, 30 minutes. Say "downward so each number is used once" before you type the loop.
+
+### S154 · Burst Balloons
+
+[Burst Balloons](https://leetcode.com/problems/burst-balloons/) · Hard · stretch
+
+File: `problems/s154-burst-balloons.js`
+
+Interval dynamic programming. If it stalls after the hint, log `later`. Edit distance and knapsack are the required pair. This is the shape that shows up when the answer for a span depends on the answers for smaller spans.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Add a balloon of value 1 at both ends, so the edges have a neighbor. Let `dp[l][r]` be the best score for bursting every balloon strictly between l and r. The last balloon you burst between them is some k. Its coins are `nums[l] * nums[k] * nums[r]`, plus the best way to clear the open interval on each side of k. Try every k. Fill shorter gaps before longer gaps.
+
+</details>
+
+### S155 · Checkpoint
+
+Long. 35 minutes each. State the sentence before the code.
+
+1. Partition Equal Subset Sum
+2. Edit Distance
+
+---
+
+## Phase 19 — Trees that stay correct, and the judgment to pick
+
+Part 1 asked whether a tree is a BST. This phase builds one, deletes from one, and shows why a BST without balance becomes a linked list.
+
+### S156 · Insert into a Binary Search Tree
+
+[Insert into a Binary Search Tree](https://leetcode.com/problems/insert-into-a-binary-search-tree/) · Medium · normal
+
+File: `problems/s156-bst-insert.js`
+
+Fill **BST update**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+A missing child is where the new node goes. If the value is smaller, insert on the left. If it is larger, insert on the right. Return the node you have, so the parent's link stays intact. Duplicates are not in the tests. Pick one side and stick to it if you want a policy.
+
+</details>
+
+### S157 · Delete Node in a BST
+
+[Delete Node in a BST](https://leetcode.com/problems/delete-node-in-a-bst/) · Medium · normal
+
+File: `problems/s157-bst-delete.js`
+
+Three shapes. This is the hard one in the pair.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+Search until you find the value. A leaf returns null to its parent. One child returns that child. Two children: find the successor, the smallest node in the right subtree, copy its value onto this node, and delete the successor from the right subtree. The successor has no left child, so that second delete is one of the easy shapes.
+
+</details>
+
+### S158 · Rotations
+
+Medium. File: `problems/s158-rotate.js`
+
+You do not build a full AVL tree. You build the move an AVL tree is made of, and you say why it exists.
+
+Implement `rotateRight(y)` and `rotateLeft(x)` on nodes `{ val, left, right }`. `rotateRight` takes a node whose left child exists. After it, the left child is the parent, and the old parent hangs on the right.
+
+Test: y is 3, y.left is 2, 2.left is 1, 2.right is 9. `rotateRight(y)` returns the node 2. Its right child is 3. That 3's left child is 9. Its left child is 1.
+
+In a comment, write why a sorted insert of 1, 2, 3, 4, 5 into a plain BST is bad, and what a rotation repairs. Fill **Rotations**.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`rotateRight(y)`: x is y.left. y.left becomes x.right. x.right becomes y. Return x. `rotateLeft` is the mirror: y is x.right, x.right becomes y.left, y.left becomes x, return y. A chain of only-left children is height n. One rotation at the right place brings the height back toward log n. Lookup cost follows the height.
+
+</details>
+
+### S159 · Review
+
+New file. Redo Delete Node in a BST, 30 minutes. Draw the two-child case before you code it.
+
+### S160 · Pick the structure
+
+Medium. File: `problems/s160-pick.js`
+
+This is the engineering half of "I know DSA". Implement `pick(scenarios)` so it returns the structure name for each situation below, in order. Use these exact strings: `trie`, `union-find`, `lru`, `heap`, `dijkstra`, `fenwick`, `kmp`, `dp`, `topo`, `hash-map`.
+
+1. Suggest the rest of a word as someone types.
+2. Merge accounts when you learn that two emails are the same person, and answer "same person?" as more facts arrive.
+3. Keep the 100 most recently used pages in memory, and drop the stalest when a new one arrives.
+4. Maintain the 10 most common error messages in a live log.
+5. Shortest travel time on a road map. Every road has a positive length.
+6. Many range-sum questions, and the array also receives point updates.
+7. Find one fixed word inside many long documents, worst case linear.
+8. Number of ways to make an amount with unlimited coins.
+9. Can these courses be finished, given prerequisite pairs?
+10. Two Sum.
+
+<details>
+<summary>Hint after 35 minutes</summary>
+
+`trie`, `union-find`, `lru`, `heap`, `dijkstra`, `fenwick`, `kmp`, `dp`, `topo`, `hash-map`.
+
+A trie stores prefixes. Union-find merges groups as edges arrive. LRU is a map plus an order of use. A heap of fixed size keeps a top-k. Dijkstra is the non-negative shortest path. A Fenwick tree is the small tool for point updates and prefix sums. KMP is worst-case linear search of one needle. Coin combinations are the DP from S149. Course prerequisites are a topological order. Two Sum is a hash map.
+
+</details>
+
+### S161 · Final
+
+Long. Two parts. This is the end of the full plan.
+
+1. 25 minutes, no code, notes closed. Explain, out loud, one algorithm from each row. Two sentences each: what it does, and the cost.
+   - Merge sort
+   - Dijkstra
+   - A Fenwick tree
+   - KMP
+   - 0/1 knapsack
+2. 35 minutes, one problem from a blank file. If the Later table has a Part 2 problem, do that. Otherwise do Edit Distance.
+
+Write the five explanations under the log row. They are part of done.
+
+---
+
+## After S161
+
+You have both pieces: the interview patterns, and the algorithms those patterns sit on.
+
+Keep two sessions a week while you want the skill, and through any interview loop.
+
+- Session A is a redo from a chapter you have not touched in a while. New file, notes closed.
+- Session B is one new problem in a pattern you already know. Same clock, same log.
+
+If you vanish for weeks: one short redo of the last problem you remember solving. Then the two-session week. The 161 do not reset.
+
+S108 remains the interview checkpoint you can repeat. Extra mocks, same rules as S108.
 
 | Mock | First 35 min | Second 35 min |
 | --- | --- | --- |
@@ -1499,5 +2260,7 @@ Extra mocks, when you want a full hour. Same rules as S108.
 | 4 | Merge Intervals | LRU Cache |
 | 5 | Rotting Oranges | House Robber |
 | 6 | 3Sum | Implement Trie |
+| 7 | Network Delay Time | Edit Distance |
+| 8 | Partition Equal Subset Sum | KMP indexOf |
 
 When a mock fails, the next session is only the problem that failed. Then return to the two-session week.

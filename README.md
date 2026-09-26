@@ -1,16 +1,16 @@
 # DSA practice
 
-This folder is your algorithm practice, separate from the frontend interview notes next door. The goal is interview problem-solving and the engineering judgment to pick a structure when you design a real feature.
+This folder is your algorithm practice, separate from the frontend interview notes next door. It has two finishes. S108 is interview ready. S161 is the rest of DSA as well: sorting, weighted graphs, range trees, string search, knapsack, and the judgment to pick a structure.
 
 ## Daily check
 
 The phone page is [https://rahul-narayanasamy.github.io/dsa-practice/](https://rahul-narayanasamy.github.io/dsa-practice/).
 
-Open it once a day. It shows the next session, the pattern it belongs to, and where that problem gets hard. Tap **I finished** when the code is done. **Path** is the same plan grouped into ten chapters, step by step, with Easy, Medium, Hard, Review, Checkpoint, and Stretch marked on every row. One finished session completes the week. The tick is saved in that browser, so use one device for the check. Add the page to your home screen if you want it one tap away.
+Open it once a day. It shows the next session, the pattern it belongs to, and where that problem gets hard. Tap **I finished** when the code is done. **Path** groups the plan into chapters, step by step, with Easy, Medium, Hard, Review, Checkpoint, and Stretch marked on every row. One finished session completes the week. The tick is saved in that browser, so use one device for the check. Add the page to your home screen if you want it one tap away.
 
 Copy or restore at the bottom of the page moves the ticks to another browser. The boxes in `PROGRESS.md` stay on your computer. A box you check in that file also counts as done on the site after the next publish.
 
-The plan is 108 sessions in [PLAN.md](PLAN.md). You do the first unchecked box in [PROGRESS.md](PROGRESS.md). A missed day changes nothing. Nothing expires, and you never restart from the beginning because a week went badly.
+The plan is 161 sessions in [PLAN.md](PLAN.md). Part 1 is S01–S108. Part 2 is S109–S161. You do the first unchecked box in [PROGRESS.md](PROGRESS.md). A missed day changes nothing. Nothing expires, and you never restart from the beginning because a week went badly.
 
 ## Why this is built for uneven weeks
 
@@ -32,7 +32,8 @@ Assume three sessions a week when you estimate, and accept fewer.
 | --- | --- | --- |
 | S62, binary search and intervals | A typical easy screen and many mediums | About 5 months |
 | S90, dynamic programming | Most medium algorithm rounds, with a reason for the approach | About 7 months |
-| S108, timed reps | The same skill under a clock | About 9 months |
+| S108, timed reps | Interview ready, under a clock | About 9 months |
+| S161, the full plan | Interview ready, and the rest of DSA | About 13 months |
 
 The engineering payoff starts in the first month. Maps, windows, stacks, and trees show up in caches, search boxes, schedulers, file trees, and "what's the smallest limit that still works."
 
@@ -74,7 +75,7 @@ Copy [templates/problem.js](templates/problem.js) when you start a problem file.
 
 Some problems already have a writeup in `../frontend-interview-prep/solutions/dsa/`. Those files are a solution key. Open them only at the "read a solution" step. The table in [HOW-TO-SOLVE.md](HOW-TO-SOLVE.md) lists which session each file belongs to.
 
-Stretch sessions are marked in the plan. If one does not move after the hint, log it as `later` and continue. Come back at S107.
+Stretch sessions are marked in the plan. If one does not move after the hint, log it as `later` and continue. Part 1 stretches come back at S107. A Part 2 stretch still on the Later list becomes the code half of S161.
 
 ## Language
 
@@ -94,7 +95,16 @@ Stay in JavaScript for the whole plan. You can run it with Node today, and it ma
 | 7. Backtracking | S69–S76 | Subsets, permutations, grids |
 | 8. Dynamic programming | S77–S90 | Recursion with memory, then tables |
 | 9. Design structures | S91–S98 | Trie, union-find, O(1) random |
-| 10. Timed reps | S99–S108 | Two checkpoints under a 35-minute clock |
+| 10. Timed reps | S99–S108 | Interview ready, under a 35-minute clock |
+| 11. Sorting | S109–S112 | Merge sort, quicksort, counting sort |
+| 12. Bits | S113–S117 | XOR, bit tricks, subsets by number |
+| 13. Numbers | S118–S121 | GCD, the sieve, fast powers |
+| 14. Greedy | S122–S127 | A local choice you can justify |
+| 15. Weighted graphs | S128–S136 | Dijkstra, spanning trees, all-pairs, flow |
+| 16. Range queries | S137–S142 | Fenwick tree and segment tree |
+| 17. Strings | S143–S147 | Rolling hash and KMP |
+| 18. DP, the rest | S148–S155 | Knapsack, edit distance, faster LIS |
+| 19. Judgment | S156–S161 | BST updates, rotations, picking the structure |
 
 Work top to bottom. Review sessions and checkpoints stay in the list on purpose. They are the part that makes the skill survive a skipped week.
 
